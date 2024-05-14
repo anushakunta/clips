@@ -16,6 +16,7 @@ export class AuthService {
   public isAuthenticated$: Observable<boolean>;
   public isAuthenticatedDelayed$: Observable<boolean>;
   public redirect = false;
+  public isUserLoggedIn:boolean = true;
 
   constructor(
     private auth:AngularFireAuth,
@@ -66,6 +67,7 @@ export class AuthService {
       $event?.preventDefault();
     }
     await this.auth.signOut();
+    this.isUserLoggedIn = false;
     if(this.redirect){
       await this.router.navigateByUrl('/')
     }

@@ -11,7 +11,9 @@ describe('ClipsListComponent', () => {
       declarations: [ ClipsListComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(ClipsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
