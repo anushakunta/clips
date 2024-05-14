@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   alertColor = 'blue'
   inSubmission: boolean = false;
 
-  constructor(private auth:AngularFireAuth){
+  constructor(private auth:AngularFireAuth,private authService:AuthService){
 
   }
 
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
       await this.auth.signInWithEmailAndPassword(
         this.credentials.email, this.credentials.password
       )
+      this.authService.isUserLoggedIn = true;
     }catch(e) {
       this.showAlert = true;
       this.alertMsg = "An unexpected error occurred.Please try again later.";
